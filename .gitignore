@@ -24,3 +24,7 @@ Thumbs.db
 # エディタ
 .vscode/
 .idea/
+
+CLAUDE.md
+IDEAS.md
+PROJECT_SPEC.md
