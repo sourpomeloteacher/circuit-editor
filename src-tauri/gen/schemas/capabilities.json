@@ -1,0 +1,1 @@
+{"default":{"identifier":"default","description":"回路図エディタ本体ウィンドウに許可する権限。保存/読込ダイアログとファイル入出力、ホームフォルダ配下（書類・デスクトップ・ダウンロード等）への読み書きを許可する。","local":true,"windows":["main"],"permissions":["core:default","dialog:default","fs:allow-home-read-recursive","fs:allow-home-write-recursive"]}}

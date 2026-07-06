@@ -1,0 +1,270 @@
+:root {
+  --panel-bg: #f7f8fa;
+  --border-color: #d9dde3;
+  --text-color: #1f2328;
+  --accent: #2563eb;
+  --accent-soft: #eaf1ff;
+  --danger: #dc2626;
+  --wire-color: #2b2b2b;
+  font-family: 'Segoe UI', 'Noto Sans JP', sans-serif;
+  color: var(--text-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.app-title {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.toolbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--border-color);
+  margin: 0 4px;
+}
+
+.toolbar-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #6b7280;
+  white-space: nowrap;
+}
+
+.toolbar-select select {
+  width: auto;
+  padding: 4px 6px;
+}
+
+.doc-name {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+button {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  background: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button.danger:hover:not(:disabled) {
+  background: #fee2e2;
+  border-color: var(--danger);
+  color: var(--danger);
+}
+
+.app-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+}
+
+.panel {
+  width: 240px;
+  background: var(--panel-bg);
+  border-right: 1px solid var(--border-color);
+  padding: 12px;
+  overflow-y: auto;
+}
+
+.right-panel {
+  border-right: none;
+  border-left: 1px solid var(--border-color);
+}
+
+.panel-section {
+  margin-bottom: 16px;
+}
+
+.panel-label {
+  display: block;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.panel-empty {
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+select, input[type='text'], input[type='number'] {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.value-row {
+  display: flex;
+  gap: 6px;
+}
+
+.number-scrub {
+  flex: 1;
+  min-width: 0;
+  cursor: ns-resize;
+  border-radius: 6px;
+}
+
+.number-scrub input {
+  width: 100%;
+}
+
+.number-scrub input {
+  cursor: ns-resize;
+}
+
+.number-scrub--active {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+input.unit-input {
+  width: 64px;
+  flex: none;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-row label {
+  font-size: 13px;
+}
+
+.button-row {
+  display: flex;
+  gap: 8px;
+}
+
+.parts-category-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  margin: 10px 0 6px;
+}
+
+.parts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.part-button {
+  font-size: 12px;
+  padding: 8px 4px;
+  text-align: center;
+}
+
+.part-button.armed {
+  background: var(--accent);
+  color: #ffffff;
+  border-color: var(--accent);
+}
+
+.panel-hint {
+  font-size: 12px;
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: 8px;
+  color: #1e3a8a;
+}
+
+.canvas-area {
+  flex: 1;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.circuit-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+}
+
+/* 印刷用: グリッド・選択枠・配線プレビューなど「編集用の見た目」を隠し、回路図だけを出力する。
+   data-export-ignore はPNG/SVG書き出し(SvgExportRenderer)と同じ目印を再利用している。 */
+@media print {
+  .toolbar,
+  .panel {
+    display: none !important;
+  }
+
+  .app-shell,
+  .app-body {
+    display: block;
+    height: auto;
+  }
+
+  .canvas-area {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .circuit-canvas {
+    width: 100%;
+    height: auto;
+  }
+
+  [data-export-ignore='true'] {
+    display: none !important;
+  }
+
+  @page {
+    margin: 12mm;
+  }
+}

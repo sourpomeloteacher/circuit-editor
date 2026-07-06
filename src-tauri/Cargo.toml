@@ -1,0 +1,22 @@
+[package]
+name = "circuit-editor"
+version = "0.1.0"
+description = "Circuit diagram editor for industrial high school electrical teachers"
+edition = "2021"
+
+[lib]
+# Tauri v2の推奨構成: main.rs(薄いバイナリエントリ)とlib.rs(アプリ本体)を分離する。
+# これによりモバイル向けエントリポイント(tauri::mobile_entry_point)を
+# 将来追加する場合もこのlibをそのまま共有できる。
+name = "circuit_editor_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-fs = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
